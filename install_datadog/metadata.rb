@@ -1,0 +1,6 @@
+name             'install_datadog'
+maintainer       'prabuddha'
+maintainer_email 'prabuddha.nike13@gmail.com'
+license          'All rights reserved'
+description      'Sets up and configures MySQL Server for the MySQL Layer'
+version          '0.1.0'

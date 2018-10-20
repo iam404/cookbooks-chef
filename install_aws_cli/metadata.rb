@@ -1,0 +1,6 @@
+name             'install_aws_cli'
+maintainer       'prabuddha'
+maintainer_email 'prabuddha.nike13@gmail.com'
+license          'All rights reserved'
+description      'Only installs aws cli and does not setup credentials'
+version          '0.1.0'

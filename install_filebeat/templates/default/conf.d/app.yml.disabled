@@ -1,0 +1,11 @@
+#=========================== Filebeat prospectors =============================
+# Put custom filebeat prospector here
+
+filebeat.prospectors:
+
+- input_type: log
+  paths:
+    - /var/log/path/to/app1/log
+  tags: ["app1"]
+  document_type: app1_log
+

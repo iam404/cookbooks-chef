@@ -1,0 +1,12 @@
+[submodule "unattended-upgrades"]
+	path = unattended-upgrades
+	url = git@github.com:iam404/unattended-upgrades.git
+[submodule "disable-apt-cron-update"]
+	path = disable-apt-cron-update
+	url = git@github.com:iam404/disable-apt-cron-update.git
+[submodule "enable-apt-cron-update"]
+	path = enable-apt-cron-update
+	url = git@github.com:iam404/enable-apt-cron-update.git
+[submodule "chef_maven_recipe"]
+	path = chef_maven_recipe
+	url = git@github.com:iam404/chef_maven_recipe.git

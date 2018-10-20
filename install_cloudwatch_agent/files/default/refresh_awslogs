@@ -1,0 +1,41 @@
+#!/bin/sh
+ 
+CONF_DIR=/var/awslogs/etc
+ 
+echo "[INFO] Download latest awslogs.conf from S3"
+aws s3 cp s3://cloudwatch-hfprod/awslogs.conf $CONF_DIR/awslogs-temp.conf
+ 
+CONF_FILE=$CONF_DIR/awslogs.conf
+mv $CONF_FILE ${CONF_FILE}-old
+ 
+echo "[INFO] Removing non-existant logs"
+cat $CONF_DIR/awslogs-temp.conf | while read LINE
+do
+  if [ "$LINE" = "" ]; then
+    EXISTS=false
+    continue
+  fi
+  if [ "`echo $LINE | grep '^\['`" ]; then
+    FILE=`echo $LINE | tr -d '[]'`
+    if [ "$FILE" = "general" ]; then
+      EXISTS=true
+      echo $LINE >> $CONF_FILE
+      continue
+    elif [ -f $FILE ]; then
+      EXISTS=true
+      echo >> $CONF_FILE
+    fi
+  fi
+  if [ "$EXISTS" = "true" ]; then
+    echo $LINE >> $CONF_FILE
+  fi
+done
+ 
+#
+if ! [ -L "/etc/cron.daily/`basename $0`" ]; then
+  echo "[INFO] Installing this script into the daily cron schedule"
+  ln -s `dirname $0`/`basename $0` /etc/cron.daily/`basename $0`
+fi
+ 
+echo "[INFO] Restarting awslogs"
+service awslogs restart
