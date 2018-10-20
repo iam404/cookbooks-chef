@@ -8,7 +8,6 @@
 
 
 Replace application_name with your application or prosecutor template name.
-For example if you set "reveal" then prosecutor template that would be taken is template/default/conf.d/reveal.yml.
 
 
 ## To Contribute
